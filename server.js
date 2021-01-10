@@ -17,7 +17,7 @@ app.use(layouts)
 // Turbo version
 app.use((request, response, next) => {
   response.locals.useTurbolinks = request.cookies.turbolinks || request.query.turbolinks
-  
+
   if (response.locals.useTurbolinks) {
     // Set cookie for this session
     response.cookie("turbolinks", "1")
@@ -52,6 +52,10 @@ app.use((request, response, next) => {
 
 app.get("/", (request, response) => {
   response.render("index", { title: "Turbo Native Demo", page_class: "index" })
+})
+
+app.post("/redirect", (request, response) => {
+  response.redirect("/one")
 })
 
 app.get("/one", (request, response) => {
